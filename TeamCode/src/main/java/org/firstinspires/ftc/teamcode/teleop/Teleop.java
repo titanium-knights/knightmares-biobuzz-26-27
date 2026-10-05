@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.utilities.SubsystemManager;
 
 @TeleOp(name = "TeleOp")
+@SuppressWarnings("unused")
 public class Teleop extends OpMode {
     private SubsystemManager subsystemManager;
     private Double modifier;
