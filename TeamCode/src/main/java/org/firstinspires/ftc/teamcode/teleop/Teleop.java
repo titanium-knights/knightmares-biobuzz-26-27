@@ -1,64 +1,86 @@
-package org.firstinspires.ftc.teamcode.teleop;
 
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+package org.firstinspires.ftc.teamcode;
+
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.utilities.SubsystemManager;
+import org.firstinspires.ftc.teamcode.utilities.intake;
+import org.firstinspires.ftc.teamcode.utilities.shooter;
+import org.firstinspires.ftc.teamcode.utilities.mechanisms;
 
-@TeleOp(name = "TeleOp")
-@SuppressWarnings("unused")
-public class Teleop extends OpMode {
-    private SubsystemManager subsystemManager;
-    private Double modifier;
-
-    @Override
-    public void init() {
-        subsystemManager = new SubsystemManager(hardwareMap, telemetry);
-        modifier = 1.0;
-    }
+@TeleOp(name = "New Season TeleOp")
+public class Teleop extends LinearOpMode {
 
     @Override
-    public void loop() {
-        modifier = (gamepad1.b) ? -0.8 : 1.0;
+    public void runOpMode() {
 
-        if (!gamepad1.a) {
-            subsystemManager.drive.move(
-                    gamepad1.left_stick_x * modifier,
-                    -gamepad1.left_stick_y * modifier, // negated bc y value is opposite on the stick
-                    gamepad1.right_stick_x);
-        } else {
-            int xDpadDir = 0;
-            if (gamepad1.dpad_left) { xDpadDir--; }
-            if (gamepad1.dpad_right) { xDpadDir++; }
-            xDpadDir *= modifier;
+        intake intake = new intake(hardwareMap);
+        shooter shooter = new shooter(hardwareMap);
+        mechanisms mechanisms = new mechanisms(hardwareMap);
 
-            int yDpadDir = 0;
-            if (gamepad1.dpad_up) { yDpadDir++; }
-            if (gamepad1.dpad_down) { yDpadDir--; }
-            yDpadDir *= modifier;
+        boolean previousVectorLB = false;
+        boolean previousPollenRB = false;
 
-            subsystemManager.drive.move(
-                    xDpadDir, yDpadDir, gamepad1.right_stick_x * 0.8
-            );
+        telemetry.addLine("Initialized!");
+        telemetry.update();
+
+        waitForStart();
+
+        while (opModeIsActive()) {
+
+            // CONTROLLER 1: INTAKE
+            if (gamepad1.left_bumper) {
+                intake.intakeReverse();
+            } else if (gamepad1.left_trigger > 0.1) {
+                intake.intakeRun();
+            } else {
+                intake.intakeStop();
+            }
+
+            // CONTROLLER 1: FLOWER POWER
+            if (gamepad1.right_bumper) {
+                mechanisms.flowerActivate();
+            } else {
+                mechanisms.flowerRest();
+            }
+
+            // CONTROLLER 2: NECTAR SHOOTER
+            if (gamepad2.left_trigger > 0.1) {
+                shooter.nectarShoot();
+            } else {
+                shooter.nectarStop();
+            }
+
+            // CONTROLLER 2: POLLEN SHOOTER
+            if (gamepad2.right_trigger > 0.1) {
+                shooter.pollenShoot();
+            } else {
+                shooter.pollenStop();
+            }
+
+            // CONTROLLER 2: VECTOR LOCK TOGGLE
+            if (gamepad2.left_bumper && !previousVectorLB) {
+                mechanisms.toggleVectorLock();
+            }
+            previousVectorLB = gamepad2.left_bumper;
+
+            // CONTROLLER 2: POLLEN LOCK TOGGLE
+            if (gamepad2.right_bumper && !previousPollenRB) {
+                mechanisms.togglePollenLock();
+            }
+            previousPollenRB = gamepad2.right_bumper;
+
+            telemetry.addData("Intake Power", intake.getPower());
+            telemetry.addData("Vector Locked",
+                    mechanisms.isVectorLocked());
+            telemetry.addData("Pollen Locked",
+                    mechanisms.isPollenLocked());
+            telemetry.update();
         }
-//        if (gamepad1.right_trigger > 0.5) {
-//            subsystemManager.outtake.outtakeRun();
-//        } else {
-//            if (gamepad1.right_bumper) {
-//                subsystemManager.outtake.outtakeKYS();
-//            } else {
-//                subsystemManager.outtake.outtakeStop();
-//            }
-//        }
-//
-//        if (gamepad1.left_trigger > 0.5) {
-//            subsystemManager.intake.intakeRun();
-//        } else {
-//            if (gamepad1.left_bumper) {
-//                subsystemManager.intake.intakeReversed();
-//            } else {
-//                subsystemManager.intake.intakeStop();
-//            }
-//        }
+
+        // Stop motors when OpMode ends
+        intake.intakeStop();
+        shooter.stopAll();
+        mechanisms.flowerRest();
     }
 }
