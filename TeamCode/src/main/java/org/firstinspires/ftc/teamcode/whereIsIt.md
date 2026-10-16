@@ -9,6 +9,10 @@ TeamCode/src/main/java/org/firstinspires/ftc/teamcode/pedro/Tuning.java
 
 TeamCode/src/main/java/org/firstinspires/ftc/teamcode/utilities/CONFIG.java
 
+**Controling bot: teleop.java**
+
+- gamepad1. **controls will popup**
+
 **Connecting to Robot**
 
 1. Connect to WIFI
