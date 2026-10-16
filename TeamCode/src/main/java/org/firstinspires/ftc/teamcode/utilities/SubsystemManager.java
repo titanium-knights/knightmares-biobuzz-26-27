@@ -19,7 +19,7 @@ public class SubsystemManager {
 //    public final Intake intake;
     public SubsystemManager(HardwareMap hmap, Telemetry telemetry) {
         // add util class initializations here
-        drive = new SimpleMecanumDrive(hmap);
+        drive = new SimpleMecanumDrive(hmap, telemetry);
 //        outtake = new OuttakeKT(hmap, telemetry);
 //        intake = new Intake(hmap, telemetry);
     }

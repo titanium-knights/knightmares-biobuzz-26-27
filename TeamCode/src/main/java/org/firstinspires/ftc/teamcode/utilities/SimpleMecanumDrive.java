@@ -3,6 +3,8 @@ package org.firstinspires.ftc.teamcode.utilities;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -10,8 +12,9 @@ public class SimpleMecanumDrive {
 
     public static final HashMap<DcMotor, double[]> directions = new HashMap<>();
     public static DcMotor fl, fr, bl, br;
+    public static Telemetry telemetry;
 
-    public SimpleMecanumDrive(HardwareMap hmap) {
+    public SimpleMecanumDrive(HardwareMap hmap, Telemetry telemetry) {
         fl = hmap.get(DcMotor.class, CONFIG.FRONT_LEFT);
         fr = hmap.get(DcMotor.class, CONFIG.FRONT_RIGHT);
         bl = hmap.get(DcMotor.class, CONFIG.BACK_LEFT);
@@ -31,6 +34,8 @@ public class SimpleMecanumDrive {
         directions.put(fr, new double[]{-1, 1});
         directions.put(bl, new double[]{-1, 1});
         directions.put(br, new double[]{1, 1});
+
+        this.telemetry = telemetry;
     }
 
     public void move(double x, double y, double turn) {
@@ -55,6 +60,12 @@ public class SimpleMecanumDrive {
         br.setPower(dot_br / max);
         fr.setPower(dot_fr / max);
         bl.setPower(dot_bl / max);
+
+        telemetry.addLine(String.format("fr: %f", (dot_fr / max)));
+        telemetry.addLine(String.format("br: %f", (dot_br / max)));
+        telemetry.addLine(String.format("fl: %f", (dot_fl / max)));
+        telemetry.addLine(String.format("bl: %f", (dot_bl / max)));
+        telemetry.update();
     }
 
     // Each double[] will be a direction vector of length two
