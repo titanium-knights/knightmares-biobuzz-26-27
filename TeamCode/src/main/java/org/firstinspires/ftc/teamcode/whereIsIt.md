@@ -16,7 +16,7 @@ TeamCode/src/main/java/org/firstinspires/ftc/teamcode/utilities/CONFIG.java
 **Connecting to Robot**
 
 1. Connect to WIFI
-- 15887-RC 
+- 15887-RC
 - FTCTitaniumA15887!
 
 2. Connect to host IP
@@ -27,3 +27,5 @@ TeamCode/src/main/java/org/firstinspires/ftc/teamcode/utilities/CONFIG.java
 
 `adb disconnect`
 
+**_OTHER_**
+- Dot method
