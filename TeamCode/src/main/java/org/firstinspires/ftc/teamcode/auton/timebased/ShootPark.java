@@ -3,11 +3,10 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.auton.AutonMethods;
-import org.firstinspires.ftc.teamcode.utilities.intake;
 import org.firstinspires.ftc.teamcode.utilities.shooter;
 @Autonomous(name="time_specimenNearHumanNEW", group="Linear OpMode")
 //@Config
-public class shoot_park extends AutonMethods {
+public class ShootPark extends AutonMethods {
     @Override
 
 
@@ -15,14 +14,15 @@ public class shoot_park extends AutonMethods {
         telemetry.addData("Initialized:", "Hopefully");
 //      telemetry.update();
 
-        intake = new intake(hardwareMap, telemetry);
+        shooter = new shooter(hardwareMap);
+
         ElapsedTime runtime = new ElapsedTime();
         waitForStart();
         runtime.reset();
         double counter = 0;
 
         //move forward 2.5 clocks
-        moveForward(concert(54));
+        moveForward(convert(54));
         counter++;
         telemetry.addLine("counter" + counter);
         telemetry.update();
@@ -39,12 +39,12 @@ public class shoot_park extends AutonMethods {
         telemetry.update();
 
         // move forward 3
-        moveForward(concert(72));
+        moveForward(convert(72));
         counter++;
         telemetry.addLine("counter" + counter);
         telemetry.update();
         // move to the left into the wall
-        moveLeft(counter(48));
+        moveLeft(convert(48));
         counter++;
         telemetry.addLine("counter" + counter);
         telemetry.update();
