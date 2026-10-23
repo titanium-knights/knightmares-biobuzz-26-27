@@ -12,11 +12,34 @@ public class SquareShootPark extends AutonMethods {
     public static double counter = 0.00;
     @Override
 
-    public void updateTelemetryCounter() {
+    // Telemetry UPDATE
+
+    public static void updateTelemetryCounter() {
         counter++;
         telemetry.addLine("counter" + counter);
         telemetry.update();
     }
+
+    // Movement functions
+
+    public static void goForward (double howMuchIN) {
+        moveForward(convert(howMuchIN));
+        updateTelemetryCounter();
+    }
+    public static void goBackward (double howMuchIN) {
+        moveBackward(convert(howMuchIN));
+        updateTelemetryCounter();
+    }
+    public static void goLeft (double howMuchIN) {
+        moveLeft(convert(howMuchIN));
+        updateTelemetryCounter();
+    }
+    public static void goRight (double howMuchIN) {
+        moveRight(convert(howMuchIN));
+        updateTelemetryCounter();
+    }
+
+    // Movement functions end
 
     public void runOpMode() throws InterruptedException {
         telemetry.addData("Initialized:", "Hopefully");
@@ -28,16 +51,13 @@ public class SquareShootPark extends AutonMethods {
         runtime.reset();
 
         // Move forward 24 inches
-        moveForward(convert(24));
-        updateTelemetryCounter();
+        goForward(24);
 
         // Move right 72 inches
-        moveRight(convert(72));
-        updateTelemetryCounter();
+        goRight(72);
 
         // Move forward 24 inches
-        moveForward(convert(24));
-        updateTelemetryCounter();
+        goForward(24);
 
         // Rotate 90 degrees counter-clockwise
         turn(90);
@@ -46,16 +66,13 @@ public class SquareShootPark extends AutonMethods {
         nectarShoot();
 
         // Move left 24 inches
-        moveLeft(convert(24));
-        updateTelemetryCounter();
+        goLeft(24);
 
         // Move forward 72 inches
-        moveForward(convert(72));
-        updateTelemetryCounter();
+        goForward(72);
 
         // Move left 24 inches
-        moveLeft(convert(24));
-        updateTelemetryCounter();
+        goLeft(24);
 
         // Arrived at parking
     }

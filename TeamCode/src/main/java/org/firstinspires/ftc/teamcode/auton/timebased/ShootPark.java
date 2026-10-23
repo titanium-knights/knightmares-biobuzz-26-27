@@ -13,11 +13,34 @@ public class ShootPark extends AutonMethods {
     @Override
 
 
-    public void updateTelemetryCounter() {
+    // Telemetry UPDATE
+
+    public static void updateTelemetryCounter() {
         counter++;
         telemetry.addLine("counter" + counter);
         telemetry.update();
     }
+
+    // Movement functions
+
+    public static void goForward (double howMuchIN) {
+        moveForward(convert(howMuchIN));
+        updateTelemetryCounter();
+    }
+    public static void goBackward (double howMuchIN) {
+        moveBackward(convert(howMuchIN));
+        updateTelemetryCounter();
+    }
+    public static void goLeft (double howMuchIN) {
+        moveLeft(convert(howMuchIN));
+        updateTelemetryCounter();
+    }
+    public static void goRight (double howMuchIN) {
+        moveRight(convert(howMuchIN));
+        updateTelemetryCounter();
+    }
+
+    // Movement functions end
 
     public void runOpMode() throws InterruptedException {
         telemetry.addData("Initialized:", "Hopefully");
@@ -29,8 +52,7 @@ public class ShootPark extends AutonMethods {
         runtime.reset();
 
         //move forward 2.5 clocks
-        moveForward(convert(54));
-        updateTelemetryCounter();
+        goForward(54);
 
         //turn 90 degrees
         turn(90);
@@ -39,18 +61,13 @@ public class ShootPark extends AutonMethods {
         nectarShoot();
 
         //move to the left 1.5 blocks
-        moveLeft(convert(30));
-        updateTelemetryCounter();
+        goLeft(30);
 
         // move forward 3
-        moveForward(convert(72));
-        updateTelemetryCounter();
+        goForward(72);
 
         // move to the left into the wall
-        moveLeft(convert(48));
-        updateTelemetryCounter();
+        goLeft(48);
     }
-
-    //
 }
 
