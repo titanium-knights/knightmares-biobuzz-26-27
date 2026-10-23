@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.auton.AutonMethods;
 import org.firstinspires.ftc.teamcode.utilities.intake;
 import org.firstinspires.ftc.teamcode.utilities.shooter;
-@Autonomous(name="time_specimenNearHumanNEW", group="Linear OpMode")
+@Autonomous(name="Square Shoot Park", group="Linear OpMode")
 //@Config
 public class SquareShootPark extends AutonMethods {
 
