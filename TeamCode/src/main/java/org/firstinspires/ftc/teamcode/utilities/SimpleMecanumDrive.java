@@ -65,7 +65,6 @@ public class SimpleMecanumDrive {
         telemetry.addLine(String.format("br: %f", (dot_br / max)));
         telemetry.addLine(String.format("fl: %f", (dot_fl / max)));
         telemetry.addLine(String.format("bl: %f", (dot_bl / max)));
-        telemetry.update();
     }
 
     // Each double[] will be a direction vector of length two

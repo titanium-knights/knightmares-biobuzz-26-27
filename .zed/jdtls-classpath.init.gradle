@@ -1,0 +1,82 @@
+// Generates Eclipse .project/.classpath for the Android modules so jdtls (used by
+// Zed, which can't import Android Gradle projects) knows about sources and dependencies.
+//
+// This is NOT applied automatically. Android Studio and normal builds are unaffected.
+// Usage (from the repo root):
+//   ./gradlew -I .zed/jdtls-classpath.init.gradle :FtcRobotController:genJdtlsProject :TeamCode:genJdtlsProject
+//
+// Re-run whenever dependencies in build.dependencies.gradle change.
+
+import org.gradle.api.artifacts.component.ModuleComponentIdentifier
+import org.gradle.api.attributes.Attribute
+
+gradle.allprojects { proj ->
+    proj.afterEvaluate {
+        def isAndroid = proj.plugins.hasPlugin('com.android.application') ||
+                proj.plugins.hasPlugin('com.android.library')
+        if (!isAndroid) return
+
+        proj.tasks.register('genJdtlsProject') {
+            // jdtls can't parse .kt files, so Java code can only see Kotlin classes through the
+            // compiled output. Compile Kotlin first so that output exists and is current.
+            def kotlinCompile = proj.tasks.findByName('compileDebugKotlin')
+            if (kotlinCompile != null) dependsOn(kotlinCompile)
+
+            doLast {
+                def root = proj.projectDir.toPath()
+                def rel = { File f -> root.relativize(f.toPath()).toString() }
+
+                def view = proj.configurations.getByName('debugCompileClasspath').incoming.artifactView {
+                    lenient = true
+                    attributes.attribute(Attribute.of('artifactType', String), 'android-classes-jar')
+                    componentFilter { it instanceof ModuleComponentIdentifier }
+                }
+                def jars = view.files.files.findAll { it.name.endsWith('.jar') }.sort { it.path }
+                def bootJars = proj.android.bootClasspath.findAll { it.name.endsWith('.jar') }
+
+                def srcDirs = proj.android.sourceSets.getByName('main').java.srcDirs
+                        .findAll { it.exists() }.collect { rel(it) }
+                def generated = [
+                        'build/generated/source/buildConfig/debug',
+                        'build/generated/not_namespaced_r_class_sources/debug/r',
+                        'build/generated/not_namespaced_r_class_sources/debug/processDebugResources/r',
+                ].findAll { new File(proj.projectDir, it).exists() }
+
+                def projectDeps = proj.configurations.getByName('implementation').allDependencies
+                        .withType(ProjectDependency).collect { it.name }
+
+                def cp = new StringBuilder()
+                cp << '<?xml version="1.0" encoding="UTF-8"?>\n<classpath>\n'
+                (srcDirs + generated).each { cp << "\t<classpathentry kind=\"src\" path=\"${it}\"/>\n" }
+                projectDeps.each { cp << "\t<classpathentry combineaccessrules=\"false\" kind=\"src\" path=\"/${it}\"/>\n" }
+                cp << '\t<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>\n'
+                // Compiled Kotlin classes, so Java can resolve Kotlin types.
+                def kotlinClasses = new File(proj.projectDir, 'build/tmp/kotlin-classes/debug')
+                if (kotlinClasses.exists()) {
+                    cp << "\t<classpathentry kind=\"lib\" path=\"${kotlinClasses.absolutePath}\"/>\n"
+                }
+                (bootJars + jars).each { cp << "\t<classpathentry kind=\"lib\" path=\"${it.absolutePath}\"/>\n" }
+                cp << '\t<classpathentry kind="output" path=".jdtls-bin"/>\n</classpath>\n'
+                new File(proj.projectDir, '.classpath').text = cp.toString()
+
+                new File(proj.projectDir, '.project').text = """<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+\t<name>${proj.name}</name>
+\t<comment></comment>
+\t<projects></projects>
+\t<buildSpec>
+\t\t<buildCommand>
+\t\t\t<name>org.eclipse.jdt.core.javabuilder</name>
+\t\t\t<arguments></arguments>
+\t\t</buildCommand>
+\t</buildSpec>
+\t<natures>
+\t\t<nature>org.eclipse.jdt.core.javanature</nature>
+\t</natures>
+</projectDescription>
+"""
+                println "jdtls: wrote ${proj.name}/.project and .classpath (${jars.size()} dependency jars)"
+            }
+        }
+    }
+}

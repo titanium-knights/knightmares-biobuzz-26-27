@@ -1,0 +1,36 @@
+// Workaround so JetBrains' kotlin-lsp (Zed) can finish its Gradle sync on this Android project.
+//
+// kotlin-lsp's Android source-set resolver reads the androidTest variant's BuildConfig output
+// directory before the task has run, which Gradle rejects:
+//   "Querying the mapped value of property(...) before task
+//    ':FtcRobotController:generateDebugAndroidTestBuildConfig' has completed is not supported"
+//
+// This script disables the androidTest variants, but ONLY when the build was started by the
+// language server (it passes its own init script named lsp-gradle-init*.gradle). For every
+// other build (Android Studio, ./gradlew, CI) it does nothing.
+//
+// Gradle only auto-loads init scripts from ~/.gradle/init.d/. .zed/setup.sh copies this file
+// there as lsp-android-sync-fix.gradle (re-run it if this file changes).
+
+def startedByLsp = gradle.startParameter.initScripts.any { it.name.startsWith('lsp-gradle-init') }
+
+if (startedByLsp) {
+    allprojects { proj ->
+        ['com.android.application', 'com.android.library'].each { pluginId ->
+            proj.plugins.withId(pluginId) {
+                proj.extensions.getByName('androidComponents').beforeVariants(
+                        proj.extensions.getByName('androidComponents').selector().all()) { variantBuilder ->
+                    // Property name differs between AGP versions; try each, ignore if absent.
+                    try {
+                        variantBuilder.enableAndroidTest = false
+                    } catch (Throwable ignored) {
+                    }
+                    try {
+                        variantBuilder.androidTest.enable = false
+                    } catch (Throwable ignored) {
+                    }
+                }
+            }
+        }
+    }
+}

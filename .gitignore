@@ -70,6 +70,14 @@ fastlane/screenshots
 fastlane/test_output
 fastlane/readme.md
 
+# jdtls (Zed) generated files; see .zed/jdtls-classpath.init.gradle
+.project
+.classpath
+.settings/
+.jdtls-bin/
+.zed/settings.json
+
+
 # Version control
 vcs.xml
 

@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.utilities;
 
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 public class CONFIG {
@@ -17,6 +18,19 @@ public class CONFIG {
 
   public static final String DOOHICKEY = "br";
   public static final DcMotorSimple.Direction DOOHIKEY_DIRECTION = DcMotorSimple.Direction.FORWARD;
+
+
+  public static final String SMALL_SHOOTER = "s_out";
+  public static final DcMotorEx.Direction SMALL_SHOOTER_DIRECTION = DcMotorEx.Direction.FORWARD;
+
+  public static final String MIDDLE_INTAKE = "m_in";
+  public static final DcMotorSimple.Direction M_IN_DIRECTION = DcMotorSimple.Direction.FORWARD;
+
+  public static final String LARGE_SHOOTER = "l_out";
+  public static final DcMotorEx.Direction LARGE_SHOOTER_DIRECTION = DcMotorEx.Direction.FORWARD;
+
+  public static final String OUTER_INTAKE = "o_in";
+  public static final DcMotorSimple.Direction O_IN_DIRECTION = DcMotorSimple.Direction.FORWARD;
 
   //    public static final String OUTTAKE_LEFT = "out_l";
   //    public static final DcMotorSimple.Direction OUT_L_DIRECTION =
