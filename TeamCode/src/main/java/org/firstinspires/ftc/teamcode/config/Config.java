@@ -40,8 +40,8 @@ public class Config {
   public static final double SALS_Y_CONSTANT = 6.7;
   public static final double SALS_TURNING_CONSTANT = 6.7;
 
-  public static final double SMALL_SHOOTER_RPM = 800.0; // TODO
-  public static final double LARGE_SHOOTER_RPM = 800.0; // TODO
+  public static final double SMALL_SHOOTER_RPM = 3000.0; // TODO
+  public static final double LARGE_SHOOTER_RPM = 3000.0; // TODO
 
   //    public static final String OUTTAKE_LEFT = "out_l";
   //    public static final DcMotorSimple.Direction OUT_L_DIRECTION =
