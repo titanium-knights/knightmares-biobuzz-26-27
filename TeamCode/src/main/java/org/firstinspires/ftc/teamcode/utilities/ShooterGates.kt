@@ -45,10 +45,10 @@ class ShooterGates(hmap: HardwareMap, telemetry: Telemetry) {
     }
 
     fun setSmallPosition(position: Double) {
-        smallGateServo.position = position.coerceIn(0.0, 1.0)
+        smallGateServo.position = position.coerceIn(-1.0, 1.0)
     }
 
     fun setLargePosition(position: Double) {
-        smallGateServo.position = position.coerceIn(0.0, 1.0)
+        largeGateServo.position = position.coerceIn(-1.0, 1.0)
     }
 }
