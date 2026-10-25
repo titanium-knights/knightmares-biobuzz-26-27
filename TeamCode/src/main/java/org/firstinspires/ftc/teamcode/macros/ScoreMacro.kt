@@ -86,8 +86,8 @@ class ScoreMacro(
 
     private fun doneSpinningUp(): Boolean {
 
-        avgSmallRPM = (avgSmallRPM * counter + shooters.getSmallRPM()) / counter + 1
-        avgLargeRPM = (avgLargeRPM * counter + shooters.getLargeRPM()) / counter + 1
+        avgSmallRPM = (avgSmallRPM * counter + shooters.getSmallRPM()) / (counter + 1)
+        avgLargeRPM = (avgLargeRPM * counter + shooters.getLargeRPM()) / (counter + 1)
 
         // dont use outdated junk data
         if (counter > 15) {
