@@ -75,6 +75,9 @@ class ScoreMacro(
             shooters.stopBoth()
         }
         telemetry.addData("counter", counter)
+        telemetry.addData("s_avg", avgSmallRPM)
+        telemetry.addData("l_avg", avgLargeRPM)
+        telemetry.addData("state", state)
     }
 
     fun stop() {
