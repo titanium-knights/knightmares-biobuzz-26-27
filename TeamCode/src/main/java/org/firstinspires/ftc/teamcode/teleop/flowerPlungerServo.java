@@ -40,7 +40,7 @@ public class flowerPlungerServo extends OpMode {
 
 //        telemetry.addLine(String.format("rot = %f", rot));
 //
-//        subsystemManager.gates.setLargePosition(rot);
+        subsystemManager.gates.setLargePosition(rot);
 //
         telemetry.update();
     }
