@@ -74,6 +74,7 @@ class ScoreMacro(
             gates.closeBoth()
             shooters.stopBoth()
         }
+        telemetry.addData("counter", counter)
     }
 
     fun stop() {
@@ -86,7 +87,7 @@ class ScoreMacro(
         avgLargeRPM = (avgLargeRPM * counter + shooters.getLargeRPM()) / counter + 1
 
         // dont use outdated junk data
-        if (counter > 5) {
+        if (counter > 15) {
             counter = 0
             avgSmallRPM = 0.0
             avgLargeRPM = 0.0
@@ -94,12 +95,10 @@ class ScoreMacro(
 
         counter++
 
-        return (
-            avgSmallRPM >= Config.SMALL_SHOOTER_RPM - 100.0
+        return (counter >= 5 && avgSmallRPM >= Config.SMALL_SHOOTER_RPM - 100.0
             && avgSmallRPM <= Config.SMALL_SHOOTER_RPM + 100.0
             && avgLargeRPM >= Config.LARGE_SHOOTER_RPM - 100.0
             && avgLargeRPM <= Config.LARGE_SHOOTER_RPM + 100.0
         )
-
     }
 }
