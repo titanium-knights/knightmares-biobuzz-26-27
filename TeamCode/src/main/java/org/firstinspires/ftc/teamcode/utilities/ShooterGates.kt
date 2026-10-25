@@ -17,9 +17,9 @@ class ShooterGates(hmap: HardwareMap, telemetry: Telemetry) {
         smallGateServo.position = POSITION_CLOSED
         largeGateServo.position = POSITION_CLOSED
     }
-    // TODO: EVERYTHING
+
     fun openSmallGate() {
-        smallGateServo.position = POSITION_OPEN
+        smallGateServo.position = 0.4
     }
 
     fun openLargeGate() {
@@ -27,7 +27,7 @@ class ShooterGates(hmap: HardwareMap, telemetry: Telemetry) {
     }
 
     fun closeSmallGate() {
-        smallGateServo.position = POSITION_CLOSED
+        smallGateServo.position = 0.5
     }
 
     fun closeLargeGate() {

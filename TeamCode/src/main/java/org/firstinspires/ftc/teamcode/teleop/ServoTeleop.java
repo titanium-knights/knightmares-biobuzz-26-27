@@ -24,12 +24,12 @@ public class ServoTeleop extends OpMode {
             rot = Math.min(rot + 0.1, 1.0);
         }
         if (gamepad1.dpadDownWasPressed()) {
-            rot = Math.max(rot - 0.1, 0.0);
+            rot = Math.max(rot - 0.1, -1.0);
         }
 
-        telemetry.addLine(String.format("rot = %d", rot));
+        telemetry.addLine(String.format("rot = %f", rot));
 
-        subsystemManager.gates.setSmallPosition(rot);
+        subsystemManager.gates.setLargePosition(rot);
 
         telemetry.update();
     }
