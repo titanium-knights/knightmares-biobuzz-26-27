@@ -1,6 +1,9 @@
 package org.firstinspires.ftc.teamcode.auton
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode
+import com.qualcomm.robotcore.util.ElapsedTime
+import org.firstinspires.ftc.teamcode.auton.timebased.ShootPark
+import org.firstinspires.ftc.teamcode.utilities.CONFIG
 import org.firstinspires.ftc.teamcode.utilities.SubsystemManager
 
 open class AutonMethods : OpMode() {
@@ -34,6 +37,79 @@ open class AutonMethods : OpMode() {
 //        subsystemManager!!.outtake.outtakeStop()
 //    }
 
+    private fun rotateHelper(turn: Double) {
+        subsystemManager!!.drive.move(0.0, 0.0, turn);
+        val timer = ElapsedTime()
+        timer.reset()
+        while (timer.seconds() < CONFIG.SALS_TURNING_CONSTANT) {
+            // hi
+        }
+        subsystemManager!!.drive.move(0.0,0.0,0.0)
+    }
+
+    fun rotateCW(degrees: Double) {
+        rotateHelper(1.0)
+    }
+
+    fun rotateCCW(degrees: Double) {
+        rotateHelper(-1.0)
+    }
+
+    fun goHelper(howMuchIn: Double, x: Double, y: Double, constant: Double) {
+        subsystemManager!!.drive.move(x, y,0.0)
+        val timer = ElapsedTime()
+        timer.reset()
+        while (timer.seconds() < constant) {
+            // hi
+        }
+        subsystemManager!!.drive.move(0.0,0.0,0.0)
+    }
+
+    fun goForward(howMuchIN: Double) {
+        goHelper(howMuchIN, 0.0, 0.5, CONFIG.SALS_Y_CONSTANT)
+        updateTelemetryCounter()
+    }
+    fun goBackward(howMuchIN: Double) {
+        goHelper(howMuchIN, 0.0, 0.5, CONFIG.SALS_Y_CONSTANT)
+        updateTelemetryCounter()
+    }
+    fun goLeft(howMuchIN: Double) {
+        goHelper(howMuchIN, -0.5, 0.0, CONFIG.SALS_X_CONSTANT)
+        updateTelemetryCounter()
+    }
+    fun goRight(howMuchIN: Double) {
+        goHelper(howMuchIN, 0.5, 0.0, CONFIG.SALS_X_CONSTANT)
+        updateTelemetryCounter()
+    }
+
+    fun updateTelemetryCounter() {
+        counter++
+        telemetry.addLine("counter: $counter")
+        telemetry.update()
+    }
+
+    fun boomShakaLaka() {
+        subsystemManager!!.shooters.shootBoth()
+
+        var iterCounter = 0
+        var avgSmallRPM = 0
+        var avgLargeRPM = 0
+        var smallIsSatisfactory = false
+        var largeIsSatisfactory = false
+
+        while (!smallIsSatisfactory && !largeIsSatisfactory) {
+
+            counter++
+        }
+        subsystemManager!!.shooters.stopBoth()
+    }
+
+    fun stopShakaLaka() {
+
+
+        subsystemManager!!.shooters.shootBoth()
+    }
+
 
     /** non-blocking methods below */
 //    @JvmOverloads
@@ -58,4 +134,7 @@ open class AutonMethods : OpMode() {
 //    fun outtakeStop() {
 //        subsystemManager!!.outtake.outtakeStop();
 //    }
+    companion object {
+        private var counter: Double = 0.0
+    }
 }

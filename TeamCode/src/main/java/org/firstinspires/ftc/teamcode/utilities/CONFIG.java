@@ -23,14 +23,22 @@ public class CONFIG {
   public static final String SMALL_SHOOTER = "s_out";
   public static final DcMotorEx.Direction SMALL_SHOOTER_DIRECTION = DcMotorEx.Direction.FORWARD;
 
-  public static final String MIDDLE_INTAKE = "m_in";
-  public static final DcMotorSimple.Direction M_IN_DIRECTION = DcMotorSimple.Direction.FORWARD;
-
   public static final String LARGE_SHOOTER = "l_out";
   public static final DcMotorEx.Direction LARGE_SHOOTER_DIRECTION = DcMotorEx.Direction.FORWARD;
 
+  public static final String MIDDLE_INTAKE = "m_in";
+  public static final DcMotorSimple.Direction M_IN_DIRECTION = DcMotorSimple.Direction.FORWARD;
+
   public static final String OUTER_INTAKE = "o_in";
   public static final DcMotorSimple.Direction O_IN_DIRECTION = DcMotorSimple.Direction.FORWARD;
+
+  public static final String SMALL_GATE_SERVO = "s_gate";
+  public static final String LARGE_GATE_SERVO = "l_gate";
+  public static final String FLOWER_SERVO = "flower_milker";
+
+  public static final double SALS_X_CONSTANT = 6.7;
+  public static final double SALS_Y_CONSTANT = 6.7;
+  public static final double SALS_TURNING_CONSTANT = 6.7;
 
   //    public static final String OUTTAKE_LEFT = "out_l";
   //    public static final DcMotorSimple.Direction OUT_L_DIRECTION =

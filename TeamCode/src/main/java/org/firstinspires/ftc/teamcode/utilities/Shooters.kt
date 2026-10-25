@@ -7,21 +7,19 @@ import org.firstinspires.ftc.robotcore.external.Telemetry
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit
 
 class Shooters(hmap: HardwareMap, private val telemetry: Telemetry) {
-    var smallShooter: DcMotorEx
-    var largeShooter: DcMotorEx
+    private var smallShooter: DcMotorEx = hmap.get(DcMotorEx::class.java, CONFIG.SMALL_SHOOTER)
+    private var largeShooter: DcMotorEx = hmap.get(DcMotorEx::class.java, CONFIG.LARGE_SHOOTER)
 
     init {
-        this.smallShooter = hmap.get(DcMotorEx::class.java, CONFIG.SMALL_SHOOTER)
-        this.smallShooter.direction = CONFIG.SMALL_SHOOTER_DIRECTION
-        this.smallShooter.zeroPowerBehavior = DcMotor.ZeroPowerBehavior.FLOAT
-        this.smallShooter.mode = DcMotor.RunMode.STOP_AND_RESET_ENCODER
-        this.smallShooter.mode = DcMotor.RunMode.RUN_USING_ENCODER
+        smallShooter.direction = CONFIG.SMALL_SHOOTER_DIRECTION
+        smallShooter.zeroPowerBehavior = DcMotor.ZeroPowerBehavior.FLOAT
+        smallShooter.mode = DcMotor.RunMode.STOP_AND_RESET_ENCODER
+        smallShooter.mode = DcMotor.RunMode.RUN_USING_ENCODER
 
-        this.largeShooter = hmap.get(DcMotorEx::class.java, CONFIG.LARGE_SHOOTER)
-        this.largeShooter.direction = CONFIG.LARGE_SHOOTER_DIRECTION
-        this.largeShooter.zeroPowerBehavior = DcMotor.ZeroPowerBehavior.FLOAT
-        this.largeShooter.mode = DcMotor.RunMode.STOP_AND_RESET_ENCODER
-        this.largeShooter.mode = DcMotor.RunMode.RUN_USING_ENCODER
+        largeShooter.direction = CONFIG.LARGE_SHOOTER_DIRECTION
+        largeShooter.zeroPowerBehavior = DcMotor.ZeroPowerBehavior.FLOAT
+        largeShooter.mode = DcMotor.RunMode.STOP_AND_RESET_ENCODER
+        largeShooter.mode = DcMotor.RunMode.RUN_USING_ENCODER
     }
 
     companion object {
@@ -32,12 +30,20 @@ class Shooters(hmap: HardwareMap, private val telemetry: Telemetry) {
         fun rpmToTicks(rpm: Double): Double {
             return (rpm * ENCODER_TPR) / 60.0
         }
+
+        fun ticksToRPM(ticks: Double): Double {
+            return (ticks * 60.0) / ENCODER_TPR
+        }
     }
 
     @JvmOverloads
     fun shootSmall(targetRPM: Double = DEFAULT_SMALL_VELO) {
         smallShooter.velocity = rpmToTicks(targetRPM)
         telem(telemetry, "smallShooter", smallShooter)
+    }
+
+    fun getSmallRPM(): Double {
+        return ticksToRPM(smallShooter.velocity)
     }
 
     fun stopSmall() {
@@ -52,6 +58,16 @@ class Shooters(hmap: HardwareMap, private val telemetry: Telemetry) {
 
     fun stopLarge() {
         largeShooter.power = 0.0
+    }
+
+    fun shootBoth() {
+        shootSmall()
+        shootLarge()
+    }
+
+    fun stopBoth() {
+        stopSmall()
+        stopLarge()
     }
 
     private fun telem(telemetry: Telemetry, label: String, shooter: DcMotorEx) {

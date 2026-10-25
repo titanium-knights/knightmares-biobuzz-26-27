@@ -18,6 +18,10 @@
 - m2: large shoot
 - m3: outer intake
 
+- servo 0: small gate
+- servo 1: large gate
+- servo 2: flower milker
+
 #### Control Hub
 
 - motor 0: fl

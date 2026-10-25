@@ -16,11 +16,13 @@ public class SubsystemManager {
     public final SimpleMecanumDrive drive;
     public final Shooters shooters;
     public final Intake intake;
+    public final ShooterGates gates;
 
     public SubsystemManager(HardwareMap hmap, Telemetry telemetry) {
         // add util class initializations here
         drive = new SimpleMecanumDrive(hmap, telemetry);
         shooters = new Shooters(hmap, telemetry);
         intake = new Intake(hmap, telemetry);
+        gates = new ShooterGates(hmap, telemetry);
     }
 }
