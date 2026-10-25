@@ -1,9 +1,9 @@
-package org.firstinspires.ftc.teamcode.utilities;
+package org.firstinspires.ftc.teamcode.config;
 
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-public class CONFIG {
+public class Config {
   public static final String FRONT_LEFT = "fl";
   public static final DcMotorSimple.Direction FL_DIRECTION = DcMotorSimple.Direction.REVERSE;
 
@@ -39,6 +39,9 @@ public class CONFIG {
   public static final double SALS_X_CONSTANT = 6.7;
   public static final double SALS_Y_CONSTANT = 6.7;
   public static final double SALS_TURNING_CONSTANT = 6.7;
+
+  public static final double SMALL_SHOOTER_RPM = 0.0; // TODO
+  public static final double LARGE_SHOOTER_RPM = 0.0; // TODO
 
   //    public static final String OUTTAKE_LEFT = "out_l";
   //    public static final DcMotorSimple.Direction OUT_L_DIRECTION =

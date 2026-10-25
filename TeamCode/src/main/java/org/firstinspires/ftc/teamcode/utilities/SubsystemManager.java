@@ -2,7 +2,11 @@ package org.firstinspires.ftc.teamcode.utilities;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-
+import org.firstinspires.ftc.teamcode.macros.ScoreMacro;
+import org.firstinspires.ftc.teamcode.subsystems.Intake;
+import org.firstinspires.ftc.teamcode.subsystems.ShooterGates;
+import org.firstinspires.ftc.teamcode.subsystems.Shooters;
+import org.firstinspires.ftc.teamcode.subsystems.SimpleMecanumDrive;
 
 
 /**
@@ -17,6 +21,7 @@ public class SubsystemManager {
     public final Shooters shooters;
     public final Intake intake;
     public final ShooterGates gates;
+    public final ScoreMacro scoreMacro;
 
     public SubsystemManager(HardwareMap hmap, Telemetry telemetry) {
         // add util class initializations here
@@ -24,5 +29,7 @@ public class SubsystemManager {
         shooters = new Shooters(hmap, telemetry);
         intake = new Intake(hmap, telemetry);
         gates = new ShooterGates(hmap, telemetry);
+
+        scoreMacro = new ScoreMacro(hmap, telemetry, shooters, gates);
     }
 }

@@ -11,8 +11,6 @@ public class Teleop extends OpMode {
     double driveSpeedModifier = -1.0;
     private SubsystemManager subsystemManager;
 
-    private int speed = 1000;
-
     @Override
     public void init() {
         subsystemManager = new SubsystemManager(hardwareMap, telemetry);
@@ -35,13 +33,8 @@ public class Teleop extends OpMode {
 
         telemetry.addLine(String.format("modifier = %B", doModifier));
 
-        if (gamepad1.right_trigger_pressed) {
-            subsystemManager.shooters.shootSmall(0.0); // TODO: FIND VALUE USING DEBUGGER LINES BELOW
-            subsystemManager.shooters.shootLarge(0.0); // TODO: FIND VALUE USING DEBUGGER LINES BELOW
-        } else {
-          subsystemManager.shooters.stopSmall();
-          subsystemManager.shooters.stopLarge();
-        }
+        if (gamepad1.right_trigger_pressed) subsystemManager.shooters.shootBoth();
+        else subsystemManager.shooters.stopBoth();
 
         if (gamepad1.left_trigger_pressed) {
             subsystemManager.intake.intakeRun();
@@ -51,26 +44,9 @@ public class Teleop extends OpMode {
             subsystemManager.intake.intakeStop();
         }
 
-
-        // DEBUGGING
-        if (gamepad1.a) {
-            subsystemManager.shooters.shootSmall(Math.min(speed, 18_000));
-        } else {
-            subsystemManager.shooters.shootSmall(0.0);
-        }
-        if (gamepad1.b) {
-            subsystemManager.shooters.shootLarge(Math.min(speed, 18_000));
-        } else {
-            subsystemManager.shooters.shootLarge(0.0);
-        }
-        if (gamepad1.dpadUpWasPressed()) {
-            speed = Math.min(speed + 100, 18_000);
-        }
-        if (gamepad1.dpadDownWasPressed()) {
-            speed = Math.max(speed - 100, 0);
-        }
-
-        telemetry.addLine(String.format("speed = %d", speed));
+        if (gamepad1.rightTriggerWasPressed()) subsystemManager.scoreMacro.start();
+        if (gamepad1.rightTriggerWasReleased()) subsystemManager.scoreMacro.stop();
+        subsystemManager.scoreMacro.update();
 
 
         telemetry.update();

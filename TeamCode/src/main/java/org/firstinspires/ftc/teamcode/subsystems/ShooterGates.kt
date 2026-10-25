@@ -1,37 +1,40 @@
-package org.firstinspires.ftc.teamcode.utilities
+package org.firstinspires.ftc.teamcode.subsystems
 
 import com.qualcomm.robotcore.hardware.HardwareMap
 import com.qualcomm.robotcore.hardware.Servo
 import org.firstinspires.ftc.robotcore.external.Telemetry
+import org.firstinspires.ftc.teamcode.config.Config
 
 class ShooterGates(hmap: HardwareMap, telemetry: Telemetry) {
-    private val smallGateServo: Servo = hmap.get(Servo::class.java, CONFIG.SMALL_GATE_SERVO)
-    private val largeGateServo: Servo = hmap.get(Servo::class.java, CONFIG.LARGE_GATE_SERVO)
+    private val smallGateServo: Servo = hmap.get(Servo::class.java, Config.SMALL_GATE_SERVO)
+    private val largeGateServo: Servo = hmap.get(Servo::class.java, Config.LARGE_GATE_SERVO)
 
     companion object {
-        const val POSITION_OPEN: Double = 0.0 // 0 degrees
-        const val POSITION_CLOSED: Double = 0.5 // 90 degrees
+        const val S_OPEN: Double = 0.4
+        const val S_CLOSED: Double = 0.5
+        const val L_OPEN: Double = 0.7
+        const val L_CLOSE: Double = 0.6
     }
 
     init {
-        smallGateServo.position = POSITION_CLOSED
-        largeGateServo.position = POSITION_CLOSED
+        smallGateServo.position = S_CLOSED
+        largeGateServo.position = L_OPEN
     }
 
     fun openSmallGate() {
-        smallGateServo.position = 0.4
+        smallGateServo.position = S_OPEN
     }
 
     fun openLargeGate() {
-        largeGateServo.position = POSITION_OPEN
+        largeGateServo.position = L_OPEN
     }
 
     fun closeSmallGate() {
-        smallGateServo.position = 0.5
+        smallGateServo.position = S_CLOSED
     }
 
     fun closeLargeGate() {
-        largeGateServo.position = POSITION_CLOSED
+        largeGateServo.position = L_CLOSE
     }
 
     fun closeBoth() {

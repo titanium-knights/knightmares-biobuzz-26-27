@@ -1,9 +1,10 @@
-package org.firstinspires.ftc.teamcode.utilities;
+package org.firstinspires.ftc.teamcode.subsystems;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.config.Config;
 
 import java.util.HashMap;
 import java.util.Objects;
@@ -15,20 +16,20 @@ public class SimpleMecanumDrive {
     public static Telemetry telemetry;
 
     public SimpleMecanumDrive(HardwareMap hmap, Telemetry telemetry) {
-        fl = hmap.get(DcMotor.class, CONFIG.FRONT_LEFT);
-        fr = hmap.get(DcMotor.class, CONFIG.FRONT_RIGHT);
-        bl = hmap.get(DcMotor.class, CONFIG.BACK_LEFT);
-        br = hmap.get(DcMotor.class, CONFIG.BACK_RIGHT);
+        fl = hmap.get(DcMotor.class, Config.FRONT_LEFT);
+        fr = hmap.get(DcMotor.class, Config.FRONT_RIGHT);
+        bl = hmap.get(DcMotor.class, Config.BACK_LEFT);
+        br = hmap.get(DcMotor.class, Config.BACK_RIGHT);
 
         fl.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         fr.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         bl.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         br.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        fl.setDirection(CONFIG.FL_DIRECTION);
-        fr.setDirection(CONFIG.FR_DIRECTION);
-        bl.setDirection(CONFIG.BL_DIRECTION);
-        br.setDirection(CONFIG.BR_DIRECTION);
+        fl.setDirection(Config.FL_DIRECTION);
+        fr.setDirection(Config.FR_DIRECTION);
+        bl.setDirection(Config.BL_DIRECTION);
+        br.setDirection(Config.BR_DIRECTION);
 
         directions.put(fl, new double[]{1, 1});
         directions.put(fr, new double[]{-1, 1});

@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
-import org.firstinspires.ftc.teamcode.utilities.CONFIG;
+import org.firstinspires.ftc.teamcode.config.Config;
 
 @TeleOp(name = "Doohickey")
 public class DoohickeyTeleop extends OpMode {
@@ -14,7 +14,7 @@ public class DoohickeyTeleop extends OpMode {
 
     @Override
     public void init() {
-        doohickey = hardwareMap.get(DcMotorEx.class, CONFIG.DOOHICKEY);
+        doohickey = hardwareMap.get(DcMotorEx.class, Config.DOOHICKEY);
         doohickey.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         doohickey.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }

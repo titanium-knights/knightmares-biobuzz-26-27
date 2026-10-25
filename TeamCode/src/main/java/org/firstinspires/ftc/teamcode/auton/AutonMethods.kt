@@ -2,8 +2,7 @@ package org.firstinspires.ftc.teamcode.auton
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode
 import com.qualcomm.robotcore.util.ElapsedTime
-import org.firstinspires.ftc.teamcode.auton.timebased.ShootPark
-import org.firstinspires.ftc.teamcode.utilities.CONFIG
+import org.firstinspires.ftc.teamcode.config.Config
 import org.firstinspires.ftc.teamcode.utilities.SubsystemManager
 
 open class AutonMethods : OpMode() {
@@ -41,7 +40,7 @@ open class AutonMethods : OpMode() {
         subsystemManager!!.drive.move(0.0, 0.0, turn);
         val timer = ElapsedTime()
         timer.reset()
-        while (timer.seconds() < CONFIG.SALS_TURNING_CONSTANT) {
+        while (timer.seconds() < Config.SALS_TURNING_CONSTANT) {
             // hi
         }
         subsystemManager!!.drive.move(0.0,0.0,0.0)
@@ -66,19 +65,19 @@ open class AutonMethods : OpMode() {
     }
 
     fun goForward(howMuchIN: Double) {
-        goHelper(howMuchIN, 0.0, 0.5, CONFIG.SALS_Y_CONSTANT)
+        goHelper(howMuchIN, 0.0, 0.5, Config.SALS_Y_CONSTANT)
         updateTelemetryCounter()
     }
     fun goBackward(howMuchIN: Double) {
-        goHelper(howMuchIN, 0.0, 0.5, CONFIG.SALS_Y_CONSTANT)
+        goHelper(howMuchIN, 0.0, 0.5, Config.SALS_Y_CONSTANT)
         updateTelemetryCounter()
     }
     fun goLeft(howMuchIN: Double) {
-        goHelper(howMuchIN, -0.5, 0.0, CONFIG.SALS_X_CONSTANT)
+        goHelper(howMuchIN, -0.5, 0.0, Config.SALS_X_CONSTANT)
         updateTelemetryCounter()
     }
     fun goRight(howMuchIN: Double) {
-        goHelper(howMuchIN, 0.5, 0.0, CONFIG.SALS_X_CONSTANT)
+        goHelper(howMuchIN, 0.5, 0.0, Config.SALS_X_CONSTANT)
         updateTelemetryCounter()
     }
 
