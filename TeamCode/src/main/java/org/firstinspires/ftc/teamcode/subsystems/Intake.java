@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.config.Config;
 public class Intake {
 
     public static Telemetry telemetry;
-    public static final double intakePower = 0.5;
+    public static final double intakePower = 0.7;
     public final DcMotor middleIntake;
     public final DcMotor outerIntake;
 
