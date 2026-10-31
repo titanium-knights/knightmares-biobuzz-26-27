@@ -12,6 +12,7 @@ public class TuneShootersTeleop extends OpMode {
     @Override
     public void init() {
         subsystemManager = new SubsystemManager(hardwareMap, telemetry);
+        subsystemManager.gates.openBoth();
 
         telemetry.addLine("67");
         telemetry.update();
@@ -21,8 +22,8 @@ public class TuneShootersTeleop extends OpMode {
     public void loop() {
 
         if (gamepad1.right_trigger_pressed) {
-            subsystemManager.shooters.shootSmall(0.0); // TODO: FIND VALUE USING DEBUGGER LINES BELOW
-            subsystemManager.shooters.shootLarge(0.0); // TODO: FIND VALUE USING DEBUGGER LINES BELOW
+            subsystemManager.shooters.shootSmall(2600); // TODO: FIND VALUE USING DEBUGGER LINES BELOW
+            subsystemManager.shooters.shootLarge(2600); // TODO: FIND VALUE USING DEBUGGER LINES BELOW
         } else {
             subsystemManager.shooters.stopSmall();
             subsystemManager.shooters.stopLarge();

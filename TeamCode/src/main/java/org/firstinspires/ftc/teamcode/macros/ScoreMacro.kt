@@ -12,11 +12,23 @@ class ScoreMacro(
     private val shooters: Shooters,
     private val gates: ShooterGates
 ) {
-    private var counter = 0
     private var state = State.STOPPED
     private var avgSmallRPM = 0.0
     private var avgLargeRPM = 0.0
-
+    private var smallRPMS = arrayOf(
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+    )
+    private var largeRPMS = arrayOf(
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+    )
 
     private enum class State {
         IDLE, STOPPED, SPIN_UP, SPINNING_UP, FEEDING,
@@ -55,10 +67,6 @@ class ScoreMacro(
         if (state == State.SPIN_UP) {
             shooters.shootBoth()
 
-            counter = 0
-            avgSmallRPM = 0.0
-            avgLargeRPM = 0.0
-
             state = State.SPINNING_UP
         }
         if (state == State.SPINNING_UP) {
@@ -74,7 +82,6 @@ class ScoreMacro(
             gates.closeBoth()
             shooters.stopBoth()
         }
-        telemetry.addData("counter", counter)
         telemetry.addData("s_avg", avgSmallRPM)
         telemetry.addData("l_avg", avgLargeRPM)
         telemetry.addData("state", state)
@@ -86,22 +93,26 @@ class ScoreMacro(
 
     private fun doneSpinningUp(): Boolean {
 
-        avgSmallRPM = (avgSmallRPM * counter + shooters.getSmallRPM()) / (counter + 1)
-        avgLargeRPM = (avgLargeRPM * counter + shooters.getLargeRPM()) / (counter + 1)
+        avgSmallRPM = smallRPMS.sum() / smallRPMS.size
+        avgLargeRPM = largeRPMS.sum() / largeRPMS.size
 
         // dont use outdated junk data
-        if (counter > 15) {
-            counter = 0
-            avgSmallRPM = 0.0
-            avgLargeRPM = 0.0
-        }
+        smallRPMS.set(0, smallRPMS.get(1))
+        smallRPMS.set(1, smallRPMS.get(2))
+        smallRPMS.set(2, smallRPMS.get(3))
+        smallRPMS.set(3, smallRPMS.get(4))
+        smallRPMS.set(4, shooters.getSmallRPM())
 
-        counter++
+        largeRPMS.set(0, largeRPMS.get(1))
+        largeRPMS.set(1, largeRPMS.get(2))
+        largeRPMS.set(2, largeRPMS.get(3))
+        largeRPMS.set(3, largeRPMS.get(4))
+        largeRPMS.set(4, shooters.getLargeRPM())
 
-        return (counter >= 5 && avgSmallRPM >= Config.SMALL_SHOOTER_RPM - 100.0
-            && avgSmallRPM <= Config.SMALL_SHOOTER_RPM + 100.0
-            && avgLargeRPM >= Config.LARGE_SHOOTER_RPM - 100.0
-            && avgLargeRPM <= Config.LARGE_SHOOTER_RPM + 100.0
+        return (avgSmallRPM >= Config.SMALL_SHOOTER_RPM - 500.0
+            && avgSmallRPM <= Config.SMALL_SHOOTER_RPM + 500.0
+            && avgLargeRPM >= Config.LARGE_SHOOTER_RPM - 500.0
+            && avgLargeRPM <= Config.LARGE_SHOOTER_RPM + 500.0
         )
     }
 }
