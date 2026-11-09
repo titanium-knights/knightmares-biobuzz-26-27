@@ -1,6 +1,5 @@
-package org.firstinspires.ftc.teamcode.auton.pedro;
+package org.firstinspires.ftc.teamcode.auton.pedro.ARCHIVE;
 
-import static com.pedropathing.api.Paths.*;
 import com.pedropathing.api.Paths;
 
 import com.pedropathing.api.PoseFactory;
@@ -10,7 +9,6 @@ import com.pedropathing.paths.Path;
 import com.pedropathing.ivy.Command;
 import com.pedropathing.ivy.Scheduler;
 import static com.pedropathing.ivy.Scheduler.schedule;
-import static com.pedropathing.ivy.commands.Commands.*;
 import static com.pedropathing.ivy.groups.Groups.sequential;
 import static com.pedropathing.ivy.pedro.PedroCommands.follow;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -18,22 +16,29 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.pedro.Constants;
 
-public class DisplaceAndPark extends LinearOpMode {
+@Autonomous(name = "AutoPath", group = "Autonomous")
+public class LeftShootPark extends LinearOpMode {
 
     private Follower follower;
 
     private final PoseFactory poseFactory = PoseFactory.degrees();
 
-    private final Pose start = poseFactory.of(56, 30, 360);
-    private final Pose displaceLeftToPark = poseFactory.of(32, 30, 360);
-    private final Pose parkStart = poseFactory.of(32, 30, 360);
-    private final Pose park = poseFactory.of(11.0221, 104.9994, 360);
+    private final Pose start = poseFactory.of(56, 8, 90);
+    private final Pose left = poseFactory.of(20, 8, 90);
+    private final Pose goShootStart = poseFactory.of(20, 8, 90);
+    private final Pose goShoot = poseFactory.of(56, 30, 90);
+    private final Pose deviateToGoParkStart = poseFactory.of(56, 30, 90);
+    private final Pose deviateToGoPark = poseFactory.of(32, 30, 360);
+    private final Pose goParkStart = poseFactory.of(32, 30, 360);
+    private final Pose goPark = poseFactory.of(10.4301, 104.2101, 360);
 
     // Autonomous routine
     public Command autoRoutine() {
         return sequential(
-                follow(follower, displaceLeftToPark()),
-                follow(follower, park())
+                follow(follower, left()),
+                follow(follower, goShoot()),
+                follow(follower, deviateToGoPark()),
+                follow(follower, goPark())
         );
     }
 
@@ -64,11 +69,19 @@ public class DisplaceAndPark extends LinearOpMode {
         }
     }
 
-    public Path displaceLeftToPark() {
-        return Paths.line(start, displaceLeftToPark).linear(start, displaceLeftToPark);
+    public Path left() {
+        return Paths.line(start, left).linear(start, left);
     }
 
-    public Path park() {
-        return Paths.line(parkStart, park).linear(parkStart, park);
+    public Path goShoot() {
+        return Paths.line(goShootStart, goShoot).linear(goShootStart, goShoot);
+    }
+
+    public Path deviateToGoPark() {
+        return Paths.line(deviateToGoParkStart, deviateToGoPark).linear(deviateToGoParkStart, deviateToGoPark);
+    }
+
+    public Path goPark() {
+        return Paths.line(goParkStart, goPark).linear(goParkStart, goPark);
     }
 }
