@@ -52,9 +52,3 @@ TeamCode/src/main/java/org/firstinspires/ftc/teamcode/utilities/CONFIG.java
 
 **_OTHER_**
 - Dot method
-
-
-
----
-## TIME_BASED_AUTON (FOR 1st COMP ONLY)_**
-
