@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.macros
 
 import com.qualcomm.robotcore.hardware.HardwareMap
+import com.qualcomm.robotcore.util.ElapsedTime
 import org.firstinspires.ftc.robotcore.external.Telemetry
 import org.firstinspires.ftc.teamcode.config.Config
 import org.firstinspires.ftc.teamcode.subsystems.ShooterGates
@@ -34,9 +35,12 @@ class ScoreMacro(
         IDLE, STOPPED, SPIN_UP, SPINNING_UP, FEEDING,
     }
 
+    private val runtime = ElapsedTime()
+
     companion object
 
     fun start() {
+        runtime.reset()
         state = State.SPIN_UP
     }
 
@@ -92,27 +96,35 @@ class ScoreMacro(
     }
 
     private fun doneSpinningUp(): Boolean {
+//
+//        avgSmallRPM = smallRPMS.sum() / smallRPMS.size
+//        avgLargeRPM = largeRPMS.sum() / largeRPMS.size
+//
+//        // dont use outdated junk data
+//        smallRPMS.set(0, smallRPMS.get(1))
+//        smallRPMS.set(1, smallRPMS.get(2))
+//        smallRPMS.set(2, smallRPMS.get(3))
+//        smallRPMS.set(3, smallRPMS.get(4))
+//        smallRPMS.set(4, shooters.getSmallRPM())
+//
+//        largeRPMS.set(0, largeRPMS.get(1))
+//        largeRPMS.set(1, largeRPMS.get(2))
+//        largeRPMS.set(2, largeRPMS.get(3))
+//        largeRPMS.set(3, largeRPMS.get(4))
+//        largeRPMS.set(4, shooters.getLargeRPM())
+//
+//        return (avgSmallRPM >= Config.SMALL_SHOOTER_RPM - 100.0
+//            && avgSmallRPM <= Config.SMALL_SHOOTER_RPM + 100.0
+//            && avgLargeRPM >= Config.LARGE_SHOOTER_RPM - 100.0
+//            && avgLargeRPM <= Config.LARGE_SHOOTER_RPM + 100.0
+//        )
 
-        avgSmallRPM = smallRPMS.sum() / smallRPMS.size
-        avgLargeRPM = largeRPMS.sum() / largeRPMS.size
+//        return (runtime.seconds() >= 3.0);
 
-        // dont use outdated junk data
-        smallRPMS.set(0, smallRPMS.get(1))
-        smallRPMS.set(1, smallRPMS.get(2))
-        smallRPMS.set(2, smallRPMS.get(3))
-        smallRPMS.set(3, smallRPMS.get(4))
-        smallRPMS.set(4, shooters.getSmallRPM())
-
-        largeRPMS.set(0, largeRPMS.get(1))
-        largeRPMS.set(1, largeRPMS.get(2))
-        largeRPMS.set(2, largeRPMS.get(3))
-        largeRPMS.set(3, largeRPMS.get(4))
-        largeRPMS.set(4, shooters.getLargeRPM())
-
-        return (avgSmallRPM >= Config.SMALL_SHOOTER_RPM - 500.0
-            && avgSmallRPM <= Config.SMALL_SHOOTER_RPM + 500.0
-            && avgLargeRPM >= Config.LARGE_SHOOTER_RPM - 500.0
-            && avgLargeRPM <= Config.LARGE_SHOOTER_RPM + 500.0
+        return (shooters.getSmallRPM() >= Config.SMALL_SHOOTER_RPM - 100.0
+            && shooters.getSmallRPM() <= Config.SMALL_SHOOTER_RPM + 100.0
+            && shooters.getLargeRPM() >= Config.LARGE_SHOOTER_RPM - 100.0
+            && shooters.getLargeRPM() <= Config.LARGE_SHOOTER_RPM + 100.0
         )
     }
 }

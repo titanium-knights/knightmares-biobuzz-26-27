@@ -49,7 +49,7 @@ class Shooters(hmap: HardwareMap, private val telemetry: Telemetry) {
     }
 
     fun stopSmall() {
-        smallShooter.power = 0.0
+        smallShooter.velocity = 0.0
     }
 
     @JvmOverloads
@@ -59,7 +59,7 @@ class Shooters(hmap: HardwareMap, private val telemetry: Telemetry) {
     }
 
     fun stopLarge() {
-        largeShooter.power = 0.0
+        largeShooter.velocity = 0.0
     }
 
     fun shootBoth() {

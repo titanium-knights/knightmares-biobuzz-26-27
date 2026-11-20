@@ -1,31 +1,20 @@
-#### Expansion Hub
+#### Ctrl
 
-<!--- motor 0: middle intake
-- encoder 0: fl odo
-- motor 1: outer intake
-- encoder 1: small encoder
-- motor 2: small shooter
-- encoder 2: small encoder
-- motor 3: large shooter
-- encoder 3: large encoder
-- servo 0: small gate
-- servo 1: large gate-->
+- bl 2
+- fl 0
+- br 3
+- fr 1
 
-- m0: small shoot
-- e0: bm odo
-- m1: middle intake
-- e1: fl odo
-- m2: large shoot
-- m3: outer intake
+- pinpoint i2c 0
+- color sensor i2c1
 
-- servo 0: small gate
-- servo 1: large gate
-- servo 2: flower milker
+- r_flower_bar s0
+- gate s1
 
-#### Control Hub
 
-- motor 0: fl
-- motor 1: fr
-- motor 2: bl
-- motor 3: br
-- encoder 3: fr odo
+
+#### Expn
+
+- in 0
+- pol_shooter 1
+- nec_shooter 2
