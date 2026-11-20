@@ -1,0 +1,640 @@
+{
+  "version": "2.0.0",
+  "timestamp": "2026-11-13T22:34:34.610Z",
+  "startPoint": {
+    "x": 56,
+    "y": 8,
+    "locked": false,
+    "headingDeg": 90
+  },
+  "lines": [
+    {
+      "id": "line-mw9udp5x-l0tvcm",
+      "color": "#ffc516",
+      "name": "PrepareToShoot1",
+      "locked": false,
+      "waitBeforeMs": 0,
+      "waitAfterMs": 0,
+      "waitBeforeName": "",
+      "waitAfterName": "",
+      "kind": "atomic",
+      "endPoint": {
+        "x": 56,
+        "y": 13
+      },
+      "controlPoints": [],
+      "heading": {
+        "type": "constant",
+        "startDeg": 90,
+        "endDeg": 90,
+        "degrees": 90,
+        "reverse": false,
+        "piecewiseHeading": {
+          "segments": [
+            {
+              "startProgress": 0,
+              "endProgress": 1,
+              "interpolationType": "linear",
+              "reversed": false,
+              "parameters": {
+                "startDeg": 0,
+                "endDeg": 0
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "kind": "atomic",
+      "id": "line-mwfit3x0-q3dzhw",
+      "endPoint": {
+        "x": 31.940060920859263,
+        "y": 7.933265417814255
+      },
+      "controlPoints": [],
+      "heading": {
+        "type": "constant",
+        "reverse": false,
+        "degrees": 180,
+        "startDeg": 0,
+        "endDeg": 0,
+        "piecewiseHeading": {
+          "segments": [
+            {
+              "startProgress": 0,
+              "endProgress": 1,
+              "interpolationType": "linear",
+              "reversed": false,
+              "parameters": {
+                "startDeg": 0,
+                "endDeg": 0
+              }
+            }
+          ]
+        }
+      },
+      "color": "#b07aa1",
+      "locked": false,
+      "waitBeforeMs": 0,
+      "waitAfterMs": 0,
+      "waitBeforeName": "",
+      "waitAfterName": "",
+      "name": "GoToPositionIntake1"
+    },
+    {
+      "id": "line-mw9ug088-u73ti4",
+      "color": "#9c755f",
+      "name": "GoIntake1",
+      "locked": false,
+      "waitBeforeMs": 0,
+      "waitAfterMs": 0,
+      "waitBeforeName": "",
+      "waitAfterName": "",
+      "kind": "atomic",
+      "endPoint": {
+        "x": 7.880121841718527,
+        "y": 7.93
+      },
+      "controlPoints": [],
+      "heading": {
+        "type": "constant",
+        "reverse": true,
+        "degrees": 180,
+        "startDeg": 0,
+        "endDeg": 0,
+        "piecewiseHeading": {
+          "segments": [
+            {
+              "startProgress": 0,
+              "endProgress": 1,
+              "interpolationType": "linear",
+              "reversed": false,
+              "parameters": {
+                "startDeg": 0,
+                "endDeg": 0
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "line-mw9ujjlr-6sdes1",
+      "color": "#f28e2b",
+      "name": "GoLineUpForSideSwitch",
+      "locked": false,
+      "waitBeforeMs": 0,
+      "waitAfterMs": 0,
+      "waitBeforeName": "",
+      "waitAfterName": "",
+      "kind": "atomic",
+      "endPoint": {
+        "x": 56.365882605314255,
+        "y": 35.19271957874298
+      },
+      "controlPoints": [],
+      "heading": {
+        "type": "linear",
+        "reverse": false,
+        "degrees": 180,
+        "startDeg": 180,
+        "endDeg": 270,
+        "piecewiseHeading": {
+          "segments": [
+            {
+              "startProgress": 0,
+              "endProgress": 1,
+              "interpolationType": "linear",
+              "reversed": false,
+              "parameters": {
+                "startDeg": 0,
+                "endDeg": 0
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "line-mw9uozvg-i3ustv",
+      "color": "#4e79a7",
+      "name": "DriveUnderBasket",
+      "locked": false,
+      "waitBeforeMs": 0,
+      "waitAfterMs": 0,
+      "waitBeforeName": "",
+      "waitAfterName": "",
+      "kind": "atomic",
+      "endPoint": {
+        "x": 60.41928207874298,
+        "y": 133.39517948031425
+      },
+      "controlPoints": [],
+      "heading": {
+        "type": "constant",
+        "reverse": true,
+        "degrees": 270,
+        "startDeg": 0,
+        "endDeg": 0,
+        "piecewiseHeading": {
+          "segments": [
+            {
+              "startProgress": 0,
+              "endProgress": 1,
+              "interpolationType": "linear",
+              "reversed": false,
+              "parameters": {
+                "startDeg": 0,
+                "endDeg": 0
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "line-mw9urp0t-e90jeu",
+      "color": "#f28e2b",
+      "name": "PrepareToShoot2",
+      "locked": false,
+      "waitBeforeMs": 0,
+      "waitAfterMs": 0,
+      "waitBeforeName": "",
+      "waitAfterName": "",
+      "kind": "atomic",
+      "endPoint": {
+        "x": 57.130850940942764,
+        "y": 119.20833192765713
+      },
+      "controlPoints": [],
+      "heading": {
+        "type": "constant",
+        "reverse": true,
+        "degrees": 270,
+        "startDeg": 0,
+        "endDeg": 0,
+        "piecewiseHeading": {
+          "segments": [
+            {
+              "startProgress": 0,
+              "endProgress": 1,
+              "interpolationType": "linear",
+              "reversed": false,
+              "parameters": {
+                "startDeg": 0,
+                "endDeg": 0
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "kind": "atomic",
+      "id": "line-mwfhsdag-w0piqh",
+      "endPoint": {
+        "x": 48.44596916437149,
+        "y": 119.63151603937149
+      },
+      "controlPoints": [],
+      "heading": {
+        "type": "linear",
+        "reverse": true,
+        "degrees": 270,
+        "startDeg": 270,
+        "endDeg": 0,
+        "piecewiseHeading": {
+          "segments": [
+            {
+              "startProgress": 0,
+              "endProgress": 1,
+              "interpolationType": "linear",
+              "reversed": false,
+              "parameters": {
+                "startDeg": 0,
+                "endDeg": 0
+              }
+            }
+          ]
+        }
+      },
+      "color": "#f28e2b",
+      "locked": false,
+      "waitBeforeMs": 0,
+      "waitAfterMs": 0,
+      "waitBeforeName": "",
+      "waitAfterName": "",
+      "name": "DisplaceToGoFlower"
+    },
+    {
+      "kind": "atomic",
+      "id": "line-mwfi9kzl-pqo6cz",
+      "endPoint": {
+        "x": 48,
+        "y": 130
+      },
+      "controlPoints": [],
+      "heading": {
+        "type": "constant",
+        "reverse": true,
+        "degrees": 90,
+        "startDeg": 90,
+        "endDeg": 90,
+        "piecewiseHeading": {
+          "segments": [
+            {
+              "startProgress": 0,
+              "endProgress": 1,
+              "interpolationType": "linear",
+              "reversed": false,
+              "parameters": {
+                "startDeg": 0,
+                "endDeg": 0
+              }
+            }
+          ]
+        }
+      },
+      "color": "#59a14f",
+      "locked": false,
+      "waitBeforeMs": 0,
+      "waitAfterMs": 0,
+      "waitBeforeName": "",
+      "waitAfterName": "",
+      "name": "GoIntakeFromFlower"
+    },
+    {
+      "kind": "atomic",
+      "id": "line-mwfj2ifi-11l2v0",
+      "endPoint": {
+        "x": 51.94473396062851,
+        "y": 120.68710515797139
+      },
+      "controlPoints": [],
+      "heading": {
+        "type": "constant",
+        "reverse": false,
+        "degrees": 90,
+        "startDeg": 270,
+        "endDeg": 270,
+        "piecewiseHeading": {
+          "segments": [
+            {
+              "startProgress": 0,
+              "endProgress": 1,
+              "interpolationType": "linear",
+              "reversed": false,
+              "parameters": {
+                "startDeg": 0,
+                "endDeg": 0
+              }
+            }
+          ]
+        }
+      },
+      "color": "#9c755f",
+      "locked": false,
+      "waitBeforeMs": 0,
+      "waitAfterMs": 0,
+      "waitBeforeName": "",
+      "waitAfterName": "",
+      "name": "GoToPositionShoot3"
+    },
+    {
+      "kind": "atomic",
+      "id": "line-mwfjezv7-lryuuj",
+      "endPoint": {
+        "x": 60.42,
+        "y": 133.4
+      },
+      "controlPoints": [],
+      "heading": {
+        "type": "linear",
+        "reverse": true,
+        "degrees": 0,
+        "startDeg": 90,
+        "endDeg": 270,
+        "piecewiseHeading": {
+          "segments": [
+            {
+              "startProgress": 0,
+              "endProgress": 1,
+              "interpolationType": "linear",
+              "reversed": false,
+              "parameters": {
+                "startDeg": 0,
+                "endDeg": 0
+              }
+            }
+          ]
+        }
+      },
+      "color": "#f28e2b",
+      "locked": false,
+      "waitBeforeMs": 0,
+      "waitAfterMs": 0,
+      "waitBeforeName": "",
+      "waitAfterName": "",
+      "name": "PrepareToShoot3"
+    },
+    {
+      "kind": "atomic",
+      "id": "line-mwfjx8xa-vr0fwd",
+      "endPoint": {
+        "x": 9.865550716252642,
+        "y": 106.67731936155423
+      },
+      "controlPoints": [],
+      "heading": {
+        "type": "constant",
+        "reverse": false,
+        "degrees": 0,
+        "startDeg": 0,
+        "endDeg": 0,
+        "piecewiseHeading": {
+          "segments": [
+            {
+              "startProgress": 0,
+              "endProgress": 1,
+              "interpolationType": "linear",
+              "reversed": false,
+              "parameters": {
+                "startDeg": 0,
+                "endDeg": 0
+              }
+            }
+          ]
+        }
+      },
+      "color": "#59a14f",
+      "locked": false,
+      "waitBeforeMs": 0,
+      "waitAfterMs": 0,
+      "waitBeforeName": "",
+      "waitAfterName": "",
+      "name": "Park"
+    }
+  ],
+  "shapes": [
+    {
+      "id": "biobuzz-red-hive",
+      "name": "Red HIVE",
+      "vertices": [
+        {
+          "x": 46,
+          "y": 50
+        },
+        {
+          "x": 48.6,
+          "y": 50
+        },
+        {
+          "x": 48.6,
+          "y": 91.4
+        },
+        {
+          "x": 46,
+          "y": 91.4
+        }
+      ],
+      "color": "#dc2626",
+      "fillColor": "#ff6b6b"
+    },
+    {
+      "id": "biobuzz-blue-hive",
+      "name": "Blue HIVE",
+      "vertices": [
+        {
+          "x": 96.5,
+          "y": 91.4
+        },
+        {
+          "x": 93.9,
+          "y": 91.4
+        },
+        {
+          "x": 93.9,
+          "y": 50
+        },
+        {
+          "x": 96.5,
+          "y": 50
+        }
+      ],
+      "color": "#2563eb",
+      "fillColor": "#60a5fa"
+    },
+    {
+      "id": "biobuzz-flower-top",
+      "name": "Scoring-Side FLOWER",
+      "vertices": [
+        {
+          "x": 43.4,
+          "y": 141.5
+        },
+        {
+          "x": 50.1,
+          "y": 141.5
+        },
+        {
+          "x": 50.1,
+          "y": 139.4
+        },
+        {
+          "x": 46.75,
+          "y": 137.7
+        },
+        {
+          "x": 43.4,
+          "y": 139.4
+        }
+      ],
+      "color": "#dc2626",
+      "fillColor": "#ff6b6b"
+    },
+    {
+      "id": "biobuzz-flower-right",
+      "name": "Blue Alliance FLOWER",
+      "vertices": [
+        {
+          "x": 141.5,
+          "y": 98.1
+        },
+        {
+          "x": 139.4,
+          "y": 98.1
+        },
+        {
+          "x": 137.7,
+          "y": 94.75
+        },
+        {
+          "x": 139.4,
+          "y": 91.4
+        },
+        {
+          "x": 141.5,
+          "y": 91.4
+        }
+      ],
+      "color": "#2563eb",
+      "fillColor": "#60a5fa"
+    },
+    {
+      "id": "biobuzz-flower-bottom",
+      "name": "Audience-Side FLOWER",
+      "vertices": [
+        {
+          "x": 91.15,
+          "y": 0
+        },
+        {
+          "x": 97.8,
+          "y": 0
+        },
+        {
+          "x": 97.8,
+          "y": 2.1
+        },
+        {
+          "x": 94.5,
+          "y": 3.8
+        },
+        {
+          "x": 91.15,
+          "y": 2.1
+        }
+      ],
+      "color": "#2563eb",
+      "fillColor": "#60a5fa"
+    },
+    {
+      "id": "biobuzz-flower-left",
+      "name": "Red Alliance FLOWER",
+      "vertices": [
+        {
+          "x": 0,
+          "y": 50.35
+        },
+        {
+          "x": 2.1,
+          "y": 50.35
+        },
+        {
+          "x": 3.8,
+          "y": 47
+        },
+        {
+          "x": 2.1,
+          "y": 43.65
+        },
+        {
+          "x": 0,
+          "y": 43.65
+        }
+      ],
+      "color": "#dc2626",
+      "fillColor": "#ff6b6b"
+    }
+  ],
+  "sequence": [
+    {
+      "kind": "path",
+      "lineId": "line-mw9udp5x-l0tvcm"
+    },
+    {
+      "kind": "path",
+      "lineId": "line-mwfit3x0-q3dzhw"
+    },
+    {
+      "kind": "path",
+      "lineId": "line-mw9ug088-u73ti4"
+    },
+    {
+      "kind": "path",
+      "lineId": "line-mw9ujjlr-6sdes1"
+    },
+    {
+      "kind": "path",
+      "lineId": "line-mw9uozvg-i3ustv"
+    },
+    {
+      "kind": "path",
+      "lineId": "line-mw9urp0t-e90jeu"
+    },
+    {
+      "kind": "path",
+      "lineId": "line-mwfhsdag-w0piqh"
+    },
+    {
+      "kind": "path",
+      "lineId": "line-mwfi9kzl-pqo6cz"
+    },
+    {
+      "kind": "path",
+      "lineId": "line-mwfj2ifi-11l2v0"
+    },
+    {
+      "kind": "path",
+      "lineId": "line-mwfjezv7-lryuuj"
+    },
+    {
+      "kind": "path",
+      "lineId": "line-mwfjx8xa-vr0fwd"
+    }
+  ],
+  "fieldPoints": [],
+  "robot": {
+    "forwardVelocity": 75,
+    "strafeVelocity": 65,
+    "aVelocity": 3.141592653589793,
+    "kFriction": 0.1,
+    "rLength": 16,
+    "rWidth": 16,
+    "safetyMargin": 1,
+    "maxAcceleration": 50,
+    "maxDeceleration": 50
+  },
+  "activePaths": []
+}

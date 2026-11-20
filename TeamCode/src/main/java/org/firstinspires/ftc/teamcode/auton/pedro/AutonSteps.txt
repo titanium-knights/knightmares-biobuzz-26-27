@@ -1,0 +1,8 @@
+1. Preload
+2. Shoot from center & tip
+3. Pickup 4 from left corner
+4. Other side
+5. Shoot
+6. Grab from flower
+7. Shoot
+8. Park
